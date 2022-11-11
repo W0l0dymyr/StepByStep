@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<div><p th:text="${message}" th:if="${message!=null}"></p></div>
+<form th:action="@{/registration}" method="post" >
+<div><label>Ім'я :<input type="text" name="username" ></label></div>
+    <div><label>Пароль :<input type="password" name="password"></label></div>
+    <div><input type="submit" value="Зареєструватися"></div>
+</form>
+<br/>
+<a th:href="@{/}">На головну</a>
+</body>
+</html>
