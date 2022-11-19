@@ -7,11 +7,13 @@
 <body>
 <h1 th:inline="text">Головне меню</h1>
 <h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+<a th:href="@{/user}">Список користувачів</a>
+<br/>
+<a th:href="@{/}">На головну</a>
 <div>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Вийти">
     </form>
 </div>
-<a th:href="@{/}">На головну</a>
 </body>
 </html>
