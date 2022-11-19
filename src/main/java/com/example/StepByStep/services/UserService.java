@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -44,5 +45,18 @@ public class UserService implements UserDetailsService {
 
     public List<User> findAll() {
     return userRepo.findAll();
+    }
+
+    public void update(Long id, User user, Map<String, String> form) {
+        User userToBeUpdated = userRepo.findById(id).get();
+        userToBeUpdated.setUsername(user.getUsername());
+        userToBeUpdated.setPassword(passwordEncoder.encode(user.getPassword()));
+        userToBeUpdated.getRoles().clear();
+        for(Role role:Role.values()){
+            if(form.containsValue(role.toString())){
+                userToBeUpdated.getRoles().add(role);
+            }
+        }
+        userRepo.save(userToBeUpdated);
     }
 }
