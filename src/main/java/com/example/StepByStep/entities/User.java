@@ -1,6 +1,5 @@
 package com.example.StepByStep.entities;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -21,11 +20,16 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    private String email;
+
+    private String code;
+
     private boolean active;
-@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-@CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-@Enumerated(EnumType.STRING)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
     @Override
     public String getUsername() {
         return username;
@@ -87,5 +91,21 @@ public class User implements UserDetails {
 
     public Long getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
