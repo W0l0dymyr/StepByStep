@@ -6,11 +6,16 @@
 </head>
 <body>
 <div><p th:text="${message}" th:if="${message!=null}"></p></div>
-<form th:action="@{/registration}" method="post" >
-<div><label>Ім'я :<input type="text" name="username" ></label></div>
-    <div><label>Пароль :<input type="password" name="password"></label></div>
-    <div><label>Email :<input type="email" name="email"></label></div>
-    <div><input type="submit" value="Зареєструватися"></div>
+<form th:action="@{/registration}" th:object="${user}" method="post">
+    <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</div>
+    <div><label>Ім'я :<input type="text" name="username"/></label></div>
+    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
+    <div><label>Пароль :<input type="password" name="password"/></label></div>
+    <div style="color:red" th:text="${passwordError}" th:if="${passwordError!=null}">Name Error</div>
+    <div><label>Повтори пароль :<input type="password" name="confirmPassword"/></label></div>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>
+    <div><label>Email :<input type="email" name="email"/></label></div>
+    <div><input type="submit" value="Зареєструватися"/></div>
 </form>
 <br/>
 <a th:href="@{/}">На головну</a>

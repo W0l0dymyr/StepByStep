@@ -4,8 +4,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
+
 
 @Entity
 @Table(name = "users")
@@ -15,11 +19,17 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "username")
+    @NotEmpty(message = "Ім'я не може бути порожнім")
+    @Size(min = 1, max = 20, message = "Ім'я має містити від 1 до 20 сиволів")
     private String username;
-
+    @NotEmpty(message = "Пароль не може бути порожнім")
+    @Size(min = 6, message = "Пароль має містити щонайменше 6 сиволів")
     @Column(name = "password")
     private String password;
-
+    @Transient
+    private String confirmPassword;
+    @Email(message = "Не правильний email")
+    @NotEmpty(message = "Email не може бути порожнім")
     private String email;
 
     private String code;
@@ -107,5 +117,13 @@ public class User implements UserDetails {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

@@ -44,13 +44,19 @@ public class UserService implements UserDetailsService {
         return userRepo.findByUsername(username);
     }
 
-    public void addUser(User user) {
+    public boolean addUser(User user) {
+        User userFromDB = userRepo.findByUsername(user.getUsername());
+        User userFromDB1 = userRepo.findByEmail(user.getEmail());
+        if(userFromDB!=null||userFromDB1!=null){
+            return true;
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Collections.singleton(Role.USER));
         user.setCode(UUID.randomUUID().toString());
         userRepo.save(user);
 
         sendMessage(user, "Щоб підтвердити реєстрацію на сервісі", "activate/%s" );
+        return false;
     }
 
     public List<User> findAll() {
