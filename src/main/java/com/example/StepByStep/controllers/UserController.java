@@ -36,6 +36,6 @@ public class UserController {
     @PostMapping("{id}")
     public String userSave(@PathVariable("id") Long id, @ModelAttribute("user") User user, @RequestParam Map<String, String> form){
         userService.update(id, user, form);
-        return "redirect:/user";
+         return "redirect:/user";
     }
 }

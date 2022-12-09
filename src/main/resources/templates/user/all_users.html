@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>All users</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
     <th>Роль</th>
     <th></th>
 </tr>
-    <tr th:each="user:${allUsers}">
+    <tr th:each="user:${allUsers}" id="user-list">
         <td th:text="${user.getUsername()}">username</td>
         <td th:text="${user.getRoles()}">role</td>
         <td><a th:href="@{/user/{id}(id=${user.getId()})}">Редаґувати</a> </td>
