@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Game over</title>
+</head>
+<body>
+<h1 style="color:red" th:inline="text">[[${#httpServletRequest.remoteUser}]]! ти програв</h1>
+<h1 th:text="${count}"></h1>
+<div><a th:href="@{/menu}">Головне меню</a></div>
+<a th:href="@{/game/name_city/play}">Грати знов</a>
+</body>
+</html>

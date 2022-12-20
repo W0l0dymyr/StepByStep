@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter city</title>
+</head>
+<body>
+<div><p style="color:red" th:text="${message}" th:if="${message!=null}"></p></div>
+<form method="post" th:action="@{/game/name_city/save_used}" th:object="${city}">
+    <label for="name"></label>
+    <input type="text" name="name" id="name" placeholder="Введи населений пункт">
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <div><input type="submit" value="Підтвердити"/></div>
+</form>
+<div><p th:text="${botsCity}" th:if="${botsCity!=null}"></p></div>
+<div><a th:href="@{/game/name_city/game_over}">Закінчити гру</a></div>
+</body>
+</html>

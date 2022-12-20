@@ -7,7 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -31,6 +33,8 @@ public class User implements UserDetails {
     @Email(message = "Не правильний email")
     @NotEmpty(message = "Email не може бути порожнім")
     private String email;
+    @Transient
+    private int count;
 
     private String code;
 
@@ -39,6 +43,9 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    @Transient
+    private final List<City> usedCities = new ArrayList<>();
 
     @Override
     public String getUsername() {
@@ -125,5 +132,17 @@ public class User implements UserDetails {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public List<City> getUsedCities() {
+        return usedCities;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
