@@ -5,6 +5,7 @@ import com.example.StepByStep.entities.User;
 import com.example.StepByStep.repositories.UserRepo;
 import org.apache.el.stream.Stream;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatcher;
@@ -56,7 +57,7 @@ public class UserServiceTest {
         user.setCode("dsf");
         Assert.assertNull(userService.loadUserByUsername("Taras"));
     }
-
+@Before
     @Test
     public void addUser() {
         User user = new User();
@@ -114,5 +115,21 @@ public class UserServiceTest {
     public void activateUser_ifUserNotExists(){
         Assert.assertFalse(userService.activateUser("code"));
         Mockito.verify(repo,Mockito.times(0)).save(ArgumentMatchers.any(User.class));
+    }
+
+    @Test
+    public  void updateBestResult(){
+        User user = new User();
+        user.setBestResult(2);
+        userService.updateBestResult(user, 3);
+        Mockito.verify(repo,Mockito.times(1)).save(user);
+    }
+
+    @Test
+    public  void updateBestResult_ifCountFewerThanBestResult(){
+        User user = new User();
+        user.setBestResult(2);
+        userService.updateBestResult(user, 1);
+        Mockito.verify(repo,Mockito.times(0)).save(user);
     }
 }

@@ -8,6 +8,6 @@
 <h1 style="color:green" th:inline="text">Вітаю [[${#httpServletRequest.remoteUser}]]! ти виграв</h1>
 <h1 th:text="${count}"></h1>
 <div><a th:href="@{/menu}">Головне меню</a></div>
-<a th:href="@{/game/name_city/play}">Грати знов</a>
+<div><a th:href="@{/game}">Вибрати гру</a></div>
 </body>
 </html>

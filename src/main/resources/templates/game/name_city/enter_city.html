@@ -12,7 +12,7 @@
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
     <div><input type="submit" value="Підтвердити"/></div>
 </form>
-<div><p th:text="${botsCity}" th:if="${botsCity!=null}"></p></div>
+<div><p th:text="${lastCity}" th:if="${lastCity!=null}"></p></div>
 <div><a th:href="@{/game/name_city/game_over}">Закінчити гру</a></div>
 </body>
 </html>
