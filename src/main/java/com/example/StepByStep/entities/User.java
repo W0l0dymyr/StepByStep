@@ -26,6 +26,7 @@ public class User implements UserDetails {
     @Size(min = 6, message = "Пароль має містити щонайменше 6 сиволів")
     @Column(name = "password")
     private String password;
+
     @Transient
     private String confirmPassword;
     @Email(message = "Не правильний email")
@@ -115,6 +116,9 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getCode() {
