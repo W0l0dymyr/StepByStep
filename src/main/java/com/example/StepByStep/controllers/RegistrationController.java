@@ -25,6 +25,10 @@ public class RegistrationController {
     @GetMapping("/registration")
     public String registration(User user) {
         LOGGER.info("Method 'registration' is started.");
+        if(userService.findAll().size()==0){
+            LOGGER.info("Method 'initializeUser' is started and creates the first User");
+            userService.initializeUser();
+        }
         return "user/registration";
     }
 
