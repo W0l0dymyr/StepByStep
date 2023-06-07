@@ -104,7 +104,7 @@ public class NameCityController {
         LOGGER.info("Method 'playWith' is started. Current user - "+user.getUsername());
         CurrentGame game = userService.getGames().stream().filter(r -> Arrays.asList(r.getPlayers()).contains(user)).findAny()
                 .orElse(userService.getGames().stream().filter(r -> r.getPlayers()[1] == null).findAny().orElse(new CurrentGame()));
-        if (userService.getGames().isEmpty() || user.getCount() == 0) {
+        if (userService.getGames().isEmpty() || (user.getCount() == 0&&!user.equals(game.getPlayers()[0]))) {
             if (userService.getGames().isEmpty() || userService.getGames().stream().noneMatch(r -> r.getPlayers()[1] == null)) {
                 LOGGER.info("games.isEmpty(). Creating a new game by "+user.getUsername());
                 game.getPlayers()[0] = user;
@@ -117,18 +117,25 @@ public class NameCityController {
             }
         }
         if (game.getPlayers()[0].equals(user)) {
-            while ((game.getPlayers()[1] != null || game.getUsedCities().size() == 1) && game.getUsedCities().size() % 2 == 1) {
-                onSpinWait();
-                LOGGER.info("Method 'playWith' was waiting. Current user - "+user.getUsername());
+            if((game.getPlayers()[1] != null || game.getUsedCities().size() == 1) && game.getUsedCities().size() % 2 == 1) {
+                LOGGER.info("Method 'playWith' is waiting. Current user - " + user.getUsername());
+                while ((game.getPlayers()[1] != null || game.getUsedCities().size() == 1) && game.getUsedCities().size() % 2 == 1) {
+                    onSpinWait();
+                }
+            } else if (user.getCount()==0&&game.getPlayers()[1]==null) {
+                return "game/name_city/enter_city";
             }
+            ;
             if (game.getPlayers()[1] == null) {
                  bot.removeGame(user, game, model);
                 return "game/name_city/you_win";
             }
         } else {
-            while (game.getUsedCities().size() % 2 == 0 && game.getPlayers()[0] != null) {
-                onSpinWait();
-                LOGGER.info("Method 'playWith' was waiting. Current user - "+user.getUsername());
+            if(game.getUsedCities().size() % 2 == 0 && game.getPlayers()[0] != null) {
+                LOGGER.info("Method 'playWith' is waiting. Current user - " + user.getUsername());
+                while (game.getUsedCities().size() % 2 == 0 && game.getPlayers()[0] != null) {
+                    onSpinWait();
+                }
             }
             if (game.getPlayers()[0] == null) {
                 bot.removeGame(user, game, model);
