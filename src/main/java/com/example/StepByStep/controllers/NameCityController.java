@@ -6,6 +6,7 @@ import com.example.StepByStep.entities.User;
 import com.example.StepByStep.services.Bot;
 import com.example.StepByStep.services.CityService;
 import com.example.StepByStep.services.UserService;
+import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
 
 import java.util.*;
 import java.util.function.Supplier;

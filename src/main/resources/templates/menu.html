@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1 th:inline="text">Головне меню</h1>
-<h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+<h2 th:inline="text">Привіт <span th:text="${remoteUser}"></span></h2>
 <div><a th:href="@{/game}">Вибрати гру</a></div>
 <div>
     <form th:action="@{/logout}" method="post">

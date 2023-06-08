@@ -1,11 +1,11 @@
 package com.example.StepByStep.controllers;
 
-import com.example.StepByStep.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class MainController {
@@ -21,5 +21,9 @@ public class MainController {
     public String chooseGame() {
         LOGGER.info("Method 'chooseGame' is started.");
         return "game/choose_game";
+    }
+    @ModelAttribute("remoteUser")
+    public Object remoteUser(final HttpServletRequest request) {
+        return request.getRemoteUser();
     }
 }
