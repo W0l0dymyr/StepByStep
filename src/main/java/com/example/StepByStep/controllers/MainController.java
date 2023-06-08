@@ -12,12 +12,6 @@ public class MainController {
     private static final Logger LOGGER = LogManager.getLogger(MainController.class);
 
     @GetMapping("/")
-    public String main() {
-        LOGGER.info("Method 'main' is started.");
-        return "main";
-    }
-
-    @GetMapping("/menu")
     public String menu() {
         LOGGER.info("Method 'menu' is started.");
         return "menu";

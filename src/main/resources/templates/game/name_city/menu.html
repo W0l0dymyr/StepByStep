@@ -6,10 +6,15 @@
 </head>
 <body>
 <h1 th:inline="text">Меню гри</h1>
-<div><a th:href="@{/game/name_city/play}">Грати з комп'ютером</a></div>
-<div><a th:href="@{/game/name_city/play_with}">Грати з людиною</a></div>
+<div><a th:href="@{/game/name_city/play}" title="Зверни увагу, що бот запам'ятає&#10;назви населених пунктів, які ти&#10;введеш і використає їх в майбутньому">Грати з комп'ютером</a></div>
+<div>
+    <a th:href="@{/game/name_city/play_with}"
+       title="Щоб почати гру з іншим користувачем,&#10;інший користувач повинен зареєструватися&#10;на цьому сервісі і також перейти за цим посиланням">
+        Грати з людиною
+    </a>
+</div>
 <div><a th:href="@{/game/name_city/best_results}">Найкращі результати</a></div>
 <div><a th:href="@{/game}">Назад</a></div>
-<div><a th:href="@{/menu}">Головне меню</a></div>
+<div><a th:href="@{/}">Головне меню</a></div>
 </body>
 </html>

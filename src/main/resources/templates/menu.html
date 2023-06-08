@@ -8,7 +8,6 @@
 <h1 th:inline="text">Головне меню</h1>
 <h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
 <div><a th:href="@{/game}">Вибрати гру</a></div>
-<a th:href="@{/}">На головну</a>
 <div>
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Вийти"/>
