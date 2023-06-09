@@ -12,6 +12,7 @@
     Ти вийшов з акаунту.
 </div>
 <div><p th:text="${message}" th:if="${message!=null}"></p></div>
+<a th:href="@{/oauth2/authorization/google}">Увійти через Google</a>
 <form th:action="@{/login}" method="post">
     <div><label>Ім'я :<input type="text" name="username"></label></div>
     <div><label>Пароль :<input type="password" name="password"></label></div>

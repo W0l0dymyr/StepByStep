@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit</title>
+</head>
+<body>
+<h1>Редаґування користувача</h1>
+<form th:action="@{/user/{id}(id=${user.getId()})}" th:method="post">
+    <div><input th:type="text" th:name="username" th:value="${user.getUsername()}"/></div>
+    <div><input th:type="password" th:name="password" placeholder="Новий пароль"/></div>
+    <div th:each="role:${roles}">
+        <label th:text="${role}">role</label>
+        <input th:type="checkbox" th:name="${role}" th:value="${role}" th:checked="${user.roles.contains(role)}"/>
+    </div>
+    <div><input th:type="submit" value="Зберегти зміни"/></div>
+</form>
+<div><a th:href="@{/user}">Назад</a></div>
+<div><a th:href="@{/menu}">Головне меню</a> </div>
+</body>
+</html>

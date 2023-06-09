@@ -15,14 +15,13 @@ import java.util.Set;
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "username")
     @NotEmpty(message = "Ім'я не може бути порожнім")
     @Size(min = 1, max = 20, message = "Ім'я має містити від 1 до 20 сиволів")
     private String username;
-    @NotEmpty(message = "Пароль не може бути порожнім")
     @Size(min = 6, message = "Пароль має містити щонайменше 6 сиволів")
     @Column(name = "password")
     private String password;
@@ -46,6 +45,9 @@ public class User implements UserDetails {
     private Set<Role> roles;
     @Column(name = "best_result")
     private Integer bestResult =0;
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
     @Override
     public String getUsername() {
@@ -149,4 +151,11 @@ public class User implements UserDetails {
         this.bestResult = bestResult;
     }
 
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
 }

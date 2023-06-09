@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:if="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div style="color:red" th:if="${param.error}">
+    Введені неправильні дані або користувач не активований
+</div>
+<div th:if="${param.logout}">
+    Ти вийшов з акаунту.
+</div>
+<div><p th:text="${message}" th:if="${message!=null}"></p></div>
+<a th:href="@{/oauth2/authorization/google}">Увійти через Google</a>
+<form th:action="@{/login}" method="post">
+    <div><label>Ім'я :<input type="text" name="username"></label></div>
+    <div><label>Пароль :<input type="password" name="password"></label></div>
+    <div><input type="submit" value="Увійти"></div>
+</form>
+<div><a th:href="@{/registration}">Реєстрація</a></div>
+<div><a th:href="@{/}">На головну</a></div>
+</body>
+</html>

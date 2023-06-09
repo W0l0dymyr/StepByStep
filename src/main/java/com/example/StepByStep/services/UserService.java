@@ -1,5 +1,6 @@
 package com.example.StepByStep.services;
 
+import com.example.StepByStep.entities.Provider;
 import com.example.StepByStep.entities.Role;
 import com.example.StepByStep.entities.User;
 import com.example.StepByStep.repositories.UserRepo;
@@ -89,7 +90,7 @@ public class UserService implements UserDetailsService {
         LOGGER.info("Method 'sendMessage' is started.");
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format("Привіт, %s \n" + text + ", будь ласка перейди за наступним посиланням: " +
-                    "http://localhost:8080/" + link, user.getUsername(), user.getCode());
+                    "https://cities-8d8k.onrender.com/" + link, user.getUsername(), user.getCode());
             mailSender.send(user.getEmail(), "Код активації", message);
         }
     }
@@ -103,6 +104,7 @@ public class UserService implements UserDetailsService {
         }
         user.setActive(true);
         user.setCode(null);
+        user.setProvider(Provider.LOCAL);
         userRepo.save(user);
         LOGGER.info("User is activated");
         return true;
@@ -128,7 +130,17 @@ public class UserService implements UserDetailsService {
         firstUser.setPassword(passwordEncoder.encode("111111"));
         firstUser.setRoles(Collections.singleton(Role.USER));
         firstUser.setRoles(Collections.singleton(Role.ADMIN));
+        firstUser.setProvider(Provider.LOCAL);
         firstUser.setActive(true);
         userRepo.save(firstUser);
+    }
+
+    public void processOAuthPostLogin(String email, String username) {
+        User user = new User();
+        user.setEmail(email);
+        user.setUsername(username);
+        user.setRoles(Collections.singleton(Role.USER));
+        user.setProvider(Provider.GOOGLE);
+        userRepo.save(user);
     }
 }

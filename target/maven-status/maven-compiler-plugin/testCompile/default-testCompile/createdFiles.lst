@@ -1,0 +1,8 @@
+com\example\StepByStep\NameCityControllerTest.class
+com\example\StepByStep\LoginTest.class
+com\example\StepByStep\services\UserServiceTest.class
+com\example\StepByStep\services\BotTest.class
+com\example\StepByStep\UserControllerTest.class
+com\example\StepByStep\RegistrationControllerTest.class
+com\example\StepByStep\services\CityServiceTest.class
+com\example\StepByStep\MainControllerTest.class
